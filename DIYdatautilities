@@ -1,0 +1,54 @@
+# Group: Richard Saito, Thiago Teodoro, Grace Peng, Ajeshkumar Vijayadas 
+# Python Assignment #1 DIY Data Utilities
+
+#Part 1
+
+import sys
+import matplotlib.pyplot as plt
+
+file = open(sys.argv[1], "r")
+data = []
+for row in file:
+	data.append(row)
+
+plt.plot(data)
+plt.margins(0.1)
+plt.show()
+
+# Part 2 
+
+import sys
+import pylab as p
+
+file = open(sys.argv[1], "r")
+data = []
+for row in file:
+	data.append(float(row))
+
+size = 50
+n, bins, patches = p.hist(data, size, normed=1)
+p.setp(patches, "facecolor", "b", "alpha", 0.75)
+p.margins(0.1)
+p.show()
+
+# Part 3 
+
+import sys
+import csv
+import matplotlib.pyplot as plt
+
+file = csv.reader(open(sys.argv[1], "r"), delimiter = ",")
+header = file.next()
+nCol = len(header)
+data = {}
+for i in range(nCol):
+	data[header[i]] = []
+for row in file:
+	for i in range(nCol):
+		data[header[i]].append(row[i])
+
+for key in data:
+	plt.plot(data[key], label=key)
+plt.margins(0.1)
+plt.legend()
+plt.show()
